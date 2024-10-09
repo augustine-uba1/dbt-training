@@ -1,0 +1,25 @@
+models:
+- name: drivers_raw_dbt
+  descritpion: Raw data cantaining drivers primary information.
+  columns:
+    - name: driverId
+      description: '{{doc("drivers_id")}}'
+      tests:
+        - unique
+        - not_null
+    - name: driverRef
+      description: Unique reference assigned to driver from formular 1
+    - name: number
+      description: Mumber of races ran by the driver
+    - name: code
+      description: shorthand code assigned to represent drivers name
+      tests:
+        - configure_generic_test
+    - name: name
+      description: Drivers full name including first name and last name
+    - name: dob
+      description: Drivers date of birth
+    - name: nationality
+      description: Drivers country of origin
+    - name: url
+      description: Drivers wiki page url

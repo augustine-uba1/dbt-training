@@ -1,0 +1,28 @@
+version: 2
+
+models:
+  - name: drivers_result_gold_dbt
+    latest_version: 1
+    config:
+      materialized: table
+
+    columns:
+      - name: fullname
+        description: "The full name of the driver"
+      - name: avg_position
+        description: "The average position of the driver"
+
+    versions:
+      - v: 1
+        config:
+          alias: drivers_result_gold_dbt
+        # Matches what's above -- nothing more needed
+    
+      - v: 2
+        config:
+          materialized: view
+        # Removed a column -- this is the breaking change!
+        columns:
+          # This means: use the 'columns' list from above, but exclude avg_position
+          - include: all
+            exclude: [avg_position]
